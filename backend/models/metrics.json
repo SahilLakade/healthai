@@ -1,0 +1,384 @@
+{
+  "trained_at_utc": "2026-10-15T04:26:15+00:00",
+  "environment": {
+    "python": "3.13.3",
+    "scikit_learn": "1.6.1"
+  },
+  "dataset": {
+    "name": "Pima Indians Diabetes Database",
+    "origin": "National Institute of Diabetes and Digestive and Kidney Diseases (via UCI / OpenML)",
+    "population_note": "Females aged 21+ of Pima Indian heritage only; results may not generalise.",
+    "target": "Outcome (1 = diabetes within 5 years of baseline, 0 = not)",
+    "rows": 768,
+    "columns": 9,
+    "native_missing_values": 0,
+    "duplicate_rows": 0,
+    "invalid_zero_counts": {
+      "Glucose": 5,
+      "BloodPressure": 35,
+      "SkinThickness": 227,
+      "Insulin": 374,
+      "BMI": 11
+    },
+    "invalid_zero_percent": {
+      "Glucose": 0.7,
+      "BloodPressure": 4.6,
+      "SkinThickness": 29.6,
+      "Insulin": 48.7,
+      "BMI": 1.4
+    },
+    "class_counts": {
+      "no_diabetes_0": 500,
+      "diabetes_1": 268
+    },
+    "positive_rate_percent": 34.9
+  },
+  "features": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ],
+  "feature_summary": {
+    "Pregnancies": {
+      "min": 0.0,
+      "median": 3.0,
+      "max": 17.0
+    },
+    "Glucose": {
+      "min": 44.0,
+      "median": 117.0,
+      "max": 199.0
+    },
+    "BloodPressure": {
+      "min": 24.0,
+      "median": 72.0,
+      "max": 122.0
+    },
+    "SkinThickness": {
+      "min": 7.0,
+      "median": 29.0,
+      "max": 99.0
+    },
+    "Insulin": {
+      "min": 14.0,
+      "median": 125.0,
+      "max": 846.0
+    },
+    "BMI": {
+      "min": 18.2,
+      "median": 32.3,
+      "max": 67.1
+    },
+    "DiabetesPedigreeFunction": {
+      "min": 0.078,
+      "median": 0.372,
+      "max": 2.42
+    },
+    "Age": {
+      "min": 21.0,
+      "median": 29.0,
+      "max": 81.0
+    }
+  },
+  "preprocessing": {
+    "invalid_zero_features": [
+      "Glucose",
+      "BloodPressure",
+      "SkinThickness",
+      "Insulin",
+      "BMI"
+    ],
+    "strategy": "Zeros in these features become missing, then median-imputed using TRAINING data only.",
+    "imputer_medians": {
+      "Pregnancies": 3.0,
+      "Glucose": 117.0,
+      "BloodPressure": 72.0,
+      "SkinThickness": 29.0,
+      "Insulin": 125.0,
+      "BMI": 32.4,
+      "DiabetesPedigreeFunction": 0.3825,
+      "Age": 29.0
+    }
+  },
+  "split": {
+    "test_size": 0.2,
+    "stratified": true,
+    "random_state": 42,
+    "train_rows": 614,
+    "test_rows": 154,
+    "train_positive": 214,
+    "test_positive": 54
+  },
+  "decision_threshold": 0.5,
+  "cross_validation": {
+    "folds": 5,
+    "results": {
+      "Logistic Regression": {
+        "accuracy_mean": 0.7622017859522857,
+        "accuracy_std": 0.01105321358323955,
+        "precision_mean": 0.6486072261072261,
+        "precision_std": 0.026337363428464235,
+        "recall_mean": 0.7009966777408638,
+        "recall_std": 0.039477610039901516,
+        "f1_mean": 0.6723854281128022,
+        "f1_std": 0.01331869395358905,
+        "roc_auc_mean": 0.8443812292358803,
+        "roc_auc_std": 0.016074151820579204
+      },
+      "Random Forest": {
+        "accuracy_mean": 0.7735972277755565,
+        "accuracy_std": 0.009901153817919018,
+        "precision_mean": 0.6539500865615031,
+        "precision_std": 0.020030717253379356,
+        "recall_mean": 0.7475083056478405,
+        "recall_std": 0.02857915371110507,
+        "f1_mean": 0.6970112430749127,
+        "f1_std": 0.012357915427893546,
+        "roc_auc_mean": 0.8376467331118492,
+        "roc_auc_std": 0.02152223200827025
+      }
+    }
+  },
+  "test_results": {
+    "Logistic Regression": {
+      "accuracy": 0.7337662337662337,
+      "precision": 0.6031746031746031,
+      "recall": 0.7037037037037037,
+      "specificity": 0.75,
+      "f1": 0.6495726495726496,
+      "roc_auc": 0.8125925925925926,
+      "confusion_matrix": {
+        "tn": 75,
+        "fp": 25,
+        "fn": 16,
+        "tp": 38
+      }
+    },
+    "Random Forest": {
+      "accuracy": 0.7272727272727273,
+      "precision": 0.5909090909090909,
+      "recall": 0.7222222222222222,
+      "specificity": 0.73,
+      "f1": 0.65,
+      "roc_auc": 0.8174074074074074,
+      "confusion_matrix": {
+        "tn": 73,
+        "fp": 27,
+        "fn": 15,
+        "tp": 39
+      }
+    }
+  },
+  "selected_model": "Random Forest",
+  "selection_reason": "Within 0.01 CV ROC-AUC of the top model but higher CV recall, so fewer missed positive cases.",
+  "feature_importance": [
+    {
+      "feature": "Glucose",
+      "importance": 0.09225308641975305,
+      "std": 0.02179229608306258
+    },
+    {
+      "feature": "BMI",
+      "importance": 0.04561728395061723,
+      "std": 0.018611761141730503
+    },
+    {
+      "feature": "Age",
+      "importance": 0.029481481481481435,
+      "std": 0.00974707581628716
+    },
+    {
+      "feature": "Insulin",
+      "importance": 0.007104938271604896,
+      "std": 0.009315199331009329
+    },
+    {
+      "feature": "DiabetesPedigreeFunction",
+      "importance": 0.006413580246913538,
+      "std": 0.0067168010881063335
+    },
+    {
+      "feature": "Pregnancies",
+      "importance": 0.005981481481481465,
+      "std": 0.0039726862372509815
+    },
+    {
+      "feature": "SkinThickness",
+      "importance": 0.000617283950617246,
+      "std": 0.004036111948978271
+    },
+    {
+      "feature": "BloodPressure",
+      "importance": -0.00383950617283955,
+      "std": 0.0026505571936813617
+    }
+  ],
+  "logistic_coefficients_standardized": null,
+  "roc_curve": [
+    {
+      "fpr": 0.0,
+      "tpr": 0.0
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.0185
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.1481
+    },
+    {
+      "fpr": 0.01,
+      "tpr": 0.1667
+    },
+    {
+      "fpr": 0.02,
+      "tpr": 0.1667
+    },
+    {
+      "fpr": 0.03,
+      "tpr": 0.2037
+    },
+    {
+      "fpr": 0.03,
+      "tpr": 0.2593
+    },
+    {
+      "fpr": 0.04,
+      "tpr": 0.2593
+    },
+    {
+      "fpr": 0.05,
+      "tpr": 0.3148
+    },
+    {
+      "fpr": 0.05,
+      "tpr": 0.3333
+    },
+    {
+      "fpr": 0.08,
+      "tpr": 0.3519
+    },
+    {
+      "fpr": 0.09,
+      "tpr": 0.3519
+    },
+    {
+      "fpr": 0.09,
+      "tpr": 0.4259
+    },
+    {
+      "fpr": 0.1,
+      "tpr": 0.4444
+    },
+    {
+      "fpr": 0.12,
+      "tpr": 0.4444
+    },
+    {
+      "fpr": 0.15,
+      "tpr": 0.4815
+    },
+    {
+      "fpr": 0.15,
+      "tpr": 0.537
+    },
+    {
+      "fpr": 0.17,
+      "tpr": 0.537
+    },
+    {
+      "fpr": 0.18,
+      "tpr": 0.5556
+    },
+    {
+      "fpr": 0.18,
+      "tpr": 0.6481
+    },
+    {
+      "fpr": 0.2,
+      "tpr": 0.7222
+    },
+    {
+      "fpr": 0.27,
+      "tpr": 0.7222
+    },
+    {
+      "fpr": 0.31,
+      "tpr": 0.7407
+    },
+    {
+      "fpr": 0.31,
+      "tpr": 0.7778
+    },
+    {
+      "fpr": 0.32,
+      "tpr": 0.7778
+    },
+    {
+      "fpr": 0.33,
+      "tpr": 0.7963
+    },
+    {
+      "fpr": 0.33,
+      "tpr": 0.8333
+    },
+    {
+      "fpr": 0.34,
+      "tpr": 0.8519
+    },
+    {
+      "fpr": 0.38,
+      "tpr": 0.8519
+    },
+    {
+      "fpr": 0.38,
+      "tpr": 0.8704
+    },
+    {
+      "fpr": 0.41,
+      "tpr": 0.8889
+    },
+    {
+      "fpr": 0.42,
+      "tpr": 0.8889
+    },
+    {
+      "fpr": 0.47,
+      "tpr": 0.9074
+    },
+    {
+      "fpr": 0.47,
+      "tpr": 0.9259
+    },
+    {
+      "fpr": 0.51,
+      "tpr": 0.9259
+    },
+    {
+      "fpr": 0.56,
+      "tpr": 0.9444
+    },
+    {
+      "fpr": 0.56,
+      "tpr": 0.963
+    },
+    {
+      "fpr": 0.69,
+      "tpr": 0.9815
+    },
+    {
+      "fpr": 0.8,
+      "tpr": 0.9815
+    },
+    {
+      "fpr": 1.0,
+      "tpr": 1.0
+    }
+  ]
+}
